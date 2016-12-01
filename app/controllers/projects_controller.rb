@@ -1,5 +1,10 @@
 class ProjectsController < ApplicationController
     before_action :logged_in_user, only: [:create]
+
+    def show
+        @project = Project.find(params[:id]) 
+        @user = @project.user
+    end
     
     def create
        @project = current_user.projects.build(project_params)
@@ -23,4 +28,5 @@ class ProjectsController < ApplicationController
     def project_params
         params.require(:project).permit(:title) 
     end
+    
 end
