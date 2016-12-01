@@ -10,4 +10,6 @@ class User < ActiveRecord::Base
     validates :profile, allow_blank: true, length: { minimum: 2, maximum: 255 }
     
     has_secure_password
+    
+    has_many :projects
 end
