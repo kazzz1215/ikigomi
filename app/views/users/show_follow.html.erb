@@ -1,0 +1,12 @@
+<div class="row">
+    <aside class="col-md-4">
+        <%= render 'userinfo' %>
+    </aside>
+    <div class="col-md-8">
+        <%= render 'follow_form' if logged_in? %>
+        <h3><%= @title %> (<%= @users_count.count %>)</h3>
+        <ol class="users">
+            <%= render @users %>
+        </ol>
+    </div>
+</div>

@@ -174,3 +174,29 @@ aside {
     margin-bottom: 5px;
   }
 }
+
+
+/* users */
+.users {
+    list-style: none;
+    padding: 0;
+    li {
+        padding: 10px 0;
+        border-top: 1px solid #e8e8e8;
+        clear: both;
+    }
+    .user {
+        margin-top: 5em;
+        padding-top: 0;
+    }
+    .profile {
+        display: block;
+        margin-left: 60px;
+    }
+    .gravatar {
+        float: left;
+        margin-right: 10px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+}
