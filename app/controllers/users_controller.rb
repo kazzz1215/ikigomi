@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @projects = @user.projects.order(created_at: :desc)
+    @projects = @user.projects.page(params[:page]).per(10).order(created_at: :desc)
   end
   
   def new
@@ -34,14 +34,14 @@ class UsersController < ApplicationController
   end
   
   def followers
-    @users = @user.follower_users
+    @users = @user.follower_users.page(params[:page]).per(10).order(created_at: :desc)
     @users_count = @user.follower_users
     @title = "Follower"
     render 'show_follow'
   end
   
   def followings
-    @users = @user.following_users
+    @users = @user.following_users.page(params[:page]).per(10).order(created_at: :desc)
     @users_count = @user.following_users
     @title = "Following"
     render 'show_follow'
