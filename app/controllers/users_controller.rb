@@ -1,9 +1,13 @@
 class UsersController < ApplicationController
+  before_action :logged_in_user, only: [:index]
   before_action :set_user, only: [:show, :edit, :update, :followers, :followings]
   before_action :check_user, only: [:edit, :update]
   
+  def index
+    @users = User.all.page(params[:page]).per(30).order(created_at: :desc)
+  end
+  
   def show
-    @user = User.find(params[:id])
     @projects = @user.projects.page(params[:page]).per(10).order(created_at: :desc)
     @microposts = @user.microposts.page(params[:page]).per(10).order(created_at: :desc)
   end

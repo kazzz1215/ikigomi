@@ -38,12 +38,12 @@ class ProjectsController < ApplicationController
        return redirect_to root_url if @project.nil?
        @project.destroy
        flash[:success] = "Project deleted"
-       redirect_to request.referrer || root_url
+       redirect_to @project.user
     end
     
     private
     def project_params
-        params.require(:project).permit(:title, :content, :image) 
+        params.require(:project).permit(:title, :content, :image, :done) 
     end
     
     def set_project

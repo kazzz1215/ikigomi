@@ -20,10 +20,14 @@
             <%= f.label :image %>
             <%= f.file_field :image, class: 'form-control' %>
             
-
+            <%= f.label :done, class: "checkbox" do %>
+            <%= f.check_box :done, {}, "true", "false" %>
+            <span>完了</span>
+            <% end %>
             
             <%= f.submit "Save", class: "btn btn-large btn-primary" %>
             
         <% end %>
+
     </div>
 </div>

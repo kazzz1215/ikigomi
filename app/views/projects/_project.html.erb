@@ -7,7 +7,14 @@
         <%= link_to gravatar_for(project.user, size: 50), project.user %>
     <% end %>
     <span class="user"><%= link_to project.user.name, project.user %></span>
-    <span class="title"><%= link_to project.title, project_path(project.id) %></span>
+    <span class="title">
+        <%= link_to project.title, project_path(project.id) %>
+        <% if project.done == true %>
+            <p class="label label-primary">完了</p>
+        <% else %>
+            <p class="label label-danger">対応中</p>
+        <% end %>
+    </span>
     <% if project.image? %>
         <%= image_tag project.image.url %>
     <% end %>

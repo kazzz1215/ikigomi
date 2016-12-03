@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       get :followings, :followers
     end
   end
+  
   resources :microposts
   resources :projects do
     resources :tasks, only: [:create, :destroy]
