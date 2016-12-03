@@ -1,8 +1,9 @@
 class ProjectsController < ApplicationController
     before_action :logged_in_user, only: [:create]
+    before_action :set_project, only: [:show, :edit, :update]
+    before_action :check_project, only: [:edit, :update]
 
     def show
-        @project = Project.find(params[:id]) 
         @user = @project.user
     end
     
@@ -20,6 +21,18 @@ class ProjectsController < ApplicationController
         end
     end
     
+    def edit
+    end
+  
+    def update
+        if @project.update(project_params)
+            flash[:success] = 'プロジェクトを更新しました'
+            redirect_to @project
+        else
+            render 'edit'
+        end
+    end
+    
     def destroy
        @project = current_user.projects.find_by(id: params[:id])
        return redirect_to root_url if @project.nil?
@@ -30,7 +43,16 @@ class ProjectsController < ApplicationController
     
     private
     def project_params
-        params.require(:project).permit(:title) 
+        params.require(:project).permit(:title, :content, :image) 
+    end
+    
+    def set_project
+        @project = Project.find(params[:id]) 
+    end
+    
+    def check_project
+        @project = Project.find(params[:id]) 
+        redirect_to root_path if @project.user != current_user
     end
     
 end

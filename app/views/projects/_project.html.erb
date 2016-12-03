@@ -8,11 +8,10 @@
     <% end %>
     <span class="user"><%= link_to project.user.name, project.user %></span>
     <span class="title"><%= link_to project.title, project_path(project.id) %></span>
+    <% if project.image? %>
+        <%= image_tag project.image.url %>
+    <% end %>
     <span class="timestamp">
-        Created <%= time_ago_in_words(project.created_at) %> ago.
-        <% if current_user == project.user %>
-            <%= link_to "delete", project, method: :delete,
-                                           data: { confirm: "You sure?" } %>
-        <% end %>
+        Updated <%= time_ago_in_words(project.updated_at) %> ago.
     </span>
 </li>
