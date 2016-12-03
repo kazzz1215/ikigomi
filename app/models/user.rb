@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
     
     has_secure_password
     
+    has_many :microposts
     has_many :projects
     
     has_many :following_relationships, class_name: "Relationship",
@@ -41,7 +42,7 @@ class User < ActiveRecord::Base
     end
     
     def feed_items
-       Project.where(user_id: following_user_ids + [self.id]) 
+       Micropost.where(user_id: following_user_ids + [self.id])
     end
     
 end

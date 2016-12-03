@@ -6,15 +6,18 @@ class ProjectsController < ApplicationController
         @user = @project.user
     end
     
+    def new
+        @project = Project.new
+    end
+    
     def create
-       @project = current_user.projects.build(project_params)
-       if @project.save
+        @project = current_user.projects.build(project_params)
+        if @project.save
             flash[:success] = "Project created!"
-            redirect_to root_url
-       else
-            @feed_items = current_user.feed_items.include(:user).order(created_at: :desc)
-            render 'static_pages/home'
-       end
+            redirect_to @project
+        else
+            render 'new'
+        end
     end
     
     def destroy

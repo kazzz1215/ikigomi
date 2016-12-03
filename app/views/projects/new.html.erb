@@ -1,0 +1,15 @@
+<h1>プロジェクト名</h1>
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <%= form_for(@project) do |f| %>
+            <%= render 'shared/error_messages', object: f.object %>
+            
+            <%= f.label "プロジェクト名" %>
+            <%= f.text_field :title, class: 'form-control' %>
+            
+            <%= f.submit "Create", class: "btn btn-large btn-primary" %>
+            
+        <% end %>
+    </div>
+</div>

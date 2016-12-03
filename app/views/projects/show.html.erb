@@ -10,6 +10,25 @@
         <p><%= @user.profile %></p>
     </aside>
     <div class="col-md-8">
-
+        
+        <h1><%= @project.title %></h1>
+        <ul>
+            <% @project.tasks.each do |task| %>
+            <li>
+                <%= task.title %></li>
+                <% if current_user == @user %>
+                <%= link_to "delete", project_task_path(task.project_id,task.id), method: :delete,
+                                       data: { confirm: "You sure?" } %>
+                <% end %>
+            <% end %>
+            <% if current_user == @user %>
+            <li>
+                <%= form_for [@project, @project.tasks.build] do |f| %>
+                <%= f.text_field :title %>
+                <%= f.submit %>
+                <% end %>
+            </li>
+            <% end %>
+        </ul>
     </div>
 </div>

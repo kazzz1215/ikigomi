@@ -34,6 +34,15 @@ users = User.order(:created_at).take(6)
 end
 puts "\n-> Project_seeds OK!!"
 
+# マイクロポスト
+users = User.order(:created_at).take(6)
+50.times do
+  content = Faker::Lorem.sentence(5)
+  users.each { |user| user.microposts.create!(content: content) }
+  print "."
+end
+puts "\n-> Micropost_seeds OK!!"
+
 # リレーションシップ
 users = User.all
 user  = users.first

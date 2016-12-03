@@ -6,6 +6,5 @@
     <p><%= @user.area %></p>
 </section>
 <p><%= @user.profile %></p>
-<p><%= link_to "PROFILE", @user %> | 
-<%= link_to "FOLLOWING",  followings_user_path(@user) %> | 
-<%= link_to "FOLLOWER",  followers_user_path(@user) %></p>
+<p><%= link_to "フォロー",  followings_user_path(@user) %> | 
+<%= link_to "フォロワー",  followers_user_path(@user) %></p>
