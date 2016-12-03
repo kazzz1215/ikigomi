@@ -48,18 +48,28 @@
         <% end %>
         </p>
         
-        <ul>
+        <ul class="list-group">
             <% @project.tasks.each do |task| %>
-            <li>
+            <li class="list-group-item">
+                
+                <% if task.done == true %>
+                    <span class="badge">完了</span>
+                <% else %>
+                    <span class="badge">対応中</span>
+                <% end %>
+                
+
                 <%= link_to task.title, project_task_path(task.project_id,task.id) %>
             </li>
-                
             <% end %>
+        </ul>
+        
+        <ul class="list-group">
             <% if current_user == @user %>
-            <li>
+            <li class="list-group-item">
                 <%= form_for [@project, @project.tasks.build] do |f| %>
-                <%= f.text_field :title %>
-                <%= f.submit %>
+                <%= f.text_field :title, class: 'form-control' %>
+                <%= f.submit "Create Task", class: "btn btn-primary" %>
                 <% end %>
             </li>
             <% end %>
