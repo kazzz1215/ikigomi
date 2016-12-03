@@ -5,10 +5,12 @@
         <%= form_for(@project) do |f| %>
             <%= render 'shared/error_messages', object: f.object %>
             
+            <div class = "image-center">
             <% if @project.image? %>
                 <%= image_tag @project.image.url %>
             <% end %>
-            <br><br>
+            </div>
+            
             <%= f.label :title %>
             <%= f.text_field :title, class: 'form-control' %>
             
@@ -17,6 +19,8 @@
             
             <%= f.label :image %>
             <%= f.file_field :image, class: 'form-control' %>
+            
+
             
             <%= f.submit "Save", class: "btn btn-large btn-primary" %>
             
