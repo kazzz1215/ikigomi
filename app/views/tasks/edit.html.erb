@@ -1,0 +1,33 @@
+<h1><%= @task.title %></h1>
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <%= form_for(@task,:url => {:action => :update}) do |f| %>
+            <%= render 'shared/error_messages', object: f.object %>
+            
+            <div class = "image-center">
+            <% if @task.image? %>
+                <%= image_tag @task.image.url %>
+            <% end %>
+            </div>
+            
+            <%= f.label :title %>
+            <%= f.text_field :title, class: 'form-control' %>
+            
+            <%= f.label :content %>
+            <%= f.text_area :content, class: 'form-control' %>
+            
+            <%= f.label :image %>
+            <%= f.file_field :image, class: 'form-control' %>
+            
+            <%= f.label :done, class: "checkbox" do %>
+            <%= f.check_box :done, {}, "true", "false" %>
+            <span>完了</span>
+            <% end %>
+            
+            <%= f.submit "Save", class: "btn btn-large btn-primary" %>
+            
+        <% end %>
+
+    </div>
+</div>

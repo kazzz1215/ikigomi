@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
     before_action :logged_in_user, only: [:create]
-    before_action :set_project, only: [:show, :edit, :update]
+    before_action :set_project, only: [:show, :edit, :update, :check_project]
     before_action :check_project, only: [:edit, :update]
 
     def show
@@ -51,7 +51,6 @@ class ProjectsController < ApplicationController
     end
     
     def check_project
-        @project = Project.find(params[:id]) 
         redirect_to root_path if @project.user != current_user
     end
     

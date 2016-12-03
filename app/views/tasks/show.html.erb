@@ -15,54 +15,36 @@
             <span><%= link_to "view my profile", current_user %></span>
         </section>
         <p><%= @user.profile %></p>
-        
         <% if current_user == @user %>
             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-            <%= link_to "プロジェクト情報を更新する", edit_project_path(@project) %>
+            <%= link_to "タスクを更新する", edit_project_task_path() %>
             <br>
             <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
-            <%= link_to "プロジェクトを削除する", @project, method: :delete, data: { confirm: "削除してもよろしいですか？" } %>
-
+            <%= link_to "タスクを削除する", project_task_path(@task.project_id, @task.id), method: :delete, data: { confirm: "削除してもよろしいですか？" } %>
         <% end %>
 
     </aside>
     <div class="col-md-8">
         
-        <h1><%= @project.title %></h1>
+        <h1><%= @task.title %></h1>
         
-        <% if @project.done == true %>
+        <% if @task.done == true %>
             <p class="label label-primary">完了</p>
         <% else %>
             <p class="label label-danger">対応中</p>
         <% end %>
         
         <div class = "image-center">
-        <% if @project.image? %>
-            <%= image_tag @project.image.url %>
+        <% if @task.image? %>
+            <%= image_tag @task.image.url %>
         <% end %>
         </div>
         
         <p>
-        <% if @project.content? %>
-            <%= @project.content %>
+        <% if @task.content? %>
+            <%= @task.content %>
         <% end %>
         </p>
         
-        <ul>
-            <% @project.tasks.each do |task| %>
-            <li>
-                <%= link_to task.title, project_task_path(task.project_id,task.id) %>
-            </li>
-                
-            <% end %>
-            <% if current_user == @user %>
-            <li>
-                <%= form_for [@project, @project.tasks.build] do |f| %>
-                <%= f.text_field :title %>
-                <%= f.submit %>
-                <% end %>
-            </li>
-            <% end %>
-        </ul>
     </div>
 </div>

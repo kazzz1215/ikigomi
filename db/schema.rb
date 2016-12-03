@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161203062248) do
+ActiveRecord::Schema.define(version: 20161203162235) do
 
   create_table "microposts", force: :cascade do |t|
     t.integer  "user_id"
@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 20161203062248) do
     t.integer  "project_id"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.text     "content"
+    t.string   "image"
   end
 
   add_index "tasks", ["project_id"], name: "index_tasks_on_project_id"
