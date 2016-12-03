@@ -1,5 +1,11 @@
 <li id="user-<%= user.id %>">
-    <%= link_to gravatar_for(user, size: 50), user %>
+    <% if user.image? %>
+    <div class = "gravatar">
+        <%= link_to image_tag(user.image.thumb.url, :size => "50x50"), user %>
+    </div>
+    <% else %>
+        <%= link_to gravatar_for(user, size: 50), user %>
+    <% end %>
     <span class="user"><%= link_to user.name, user %></span>
     <span class="profile"><%= user.profile %></span>
 </li>

@@ -1,0 +1,10 @@
+<h1>
+    <% if @user.image? %>
+        <div class = "gravatar">
+        <%= image_tag @user.image.thumb.url %>
+        </div>
+    <% else %>
+        <%= gravatar_for @user %>
+    <% end %>
+    <%= @user.name %>
+</h1>
