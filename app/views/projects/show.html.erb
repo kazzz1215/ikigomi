@@ -44,7 +44,7 @@
         
         <p>
         <% if @project.content? %>
-            <%= @project.content %>
+            <%= simple_format(h(@project.content)) %>
         <% end %>
         </p>
         

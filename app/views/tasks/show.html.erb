@@ -42,7 +42,7 @@
         
         <p>
         <% if @task.content? %>
-            <%= @task.content %>
+            <%= simple_format(h(@task.content)) %>
         <% end %>
         </p>
         
